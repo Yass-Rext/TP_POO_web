@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription en ligne</title>
+    <link rel="stylesheet" href="style.css">
+    <script language="javascript">
+        function verification() {
+            // Vérification des champs obligatoires
+            if (document.getElementById('INE').value === "" ||
+                document.getElementById('pnom').value === "" ||
+                document.getElementById('nom').value === "" ||
+                document.getElementById('age').value === "" ||
+                document.getElementById('genre').value === "" ||
+                document.getElementById('campus').value === "" ||
+                document.getElementById('specialite').value === "") {
+                alert('Vous avez oublié de renseigner un champ obligatoire ou bien les mots de passe ne sont pas conformes !!!!');
+                return false; // Empêche la soumission du formulaire
+            }
+            return true; // Autorise la soumission du formulaire
+        }
+
+        function chiffres(event) {
+            // Compatibilité IE / Firefox
+            if (!event && window.event) {
+                event = window.event;
+            }
+            // Vérifie si la touche pressée est un chiffre (0-9), Backspace (8) ou Tab (9)
+            if ((event.which < 48 || event.which > 57) && event.keyCode != 8 && event.keyCode != 9) {
+                event.preventDefault(); // Empêche la saisie
+            }
+            // DOM
+            if( (event.which < 48 || event.which > 57 ) && event.keyCode !=8  && event.keyCode !=9) {
+                event.preventDefault();
+                event.stopPropagation();
+
+        }}
+    </script>
+</head>
+<body>
+    <div class="marquee-alternate">
+        <h3><span class="inscription-title">Inscription USSEIN MI</span></h3>
+    </div>
+    <style>
+        .marquee-alternate {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 40px;
+        }
+        .marquee-alternate h3 {
+            position: absolute;
+            white-space: nowrap;
+            animation: marquee-alternate 3s infinite alternate linear;
+            margin: 0;
+        }
+        @keyframes marquee-alternate {
+            0% { left: 0; }
+            100% { left: calc(100% - 300px); }
+        }
+    </style>
+
+    <form method="POST" action="POO.Affichage.php" onsubmit="return verification();">
+        <table align="center" width="495" height="338">
+            <tr>
+                <td><h1>Enregistrement</h1></td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>INE</b></font></td>
+                <td width="147">
+                    <label for="INE" class="visually-hidden">INE</label>
+                    <input type="number" name="NumINE" id="INE" placeholder="Entrez votre INE" title="Entrez votre INE">
+                    <font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>Prénom</b></font></td>
+                <td width="147">
+                    <label for="pnom" class="visually-hidden">Prénom</label>
+                    <input type="text" name="Prenom" id="pnom" placeholder="Entrez votre prénom" title="Entrez votre prénom">
+                    <font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>Nom</b></font></td>
+                <td width="147">
+                    <label for="nom" class="visually-hidden">Nom</label>
+                    <input type="text" name="Nom" id="nom" placeholder="Entrez votre nom" title="Entrez votre nom">
+                    <font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>Âge</b></font></td>
+                <td width="147">
+                    <label for="age" class="visually-hidden">Âge</label>
+                    <input type="number" name="Age" id="age" onkeypress="chiffres(event)" maxlength="2" title="Entrez votre âge" placeholder="Entrez votre âge">
+                    <font color="red">*</font> <font color="blue">ans</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>Genre</b></font></td>
+                <td>
+                    <input type="radio" name="Genre" id="genreH" value="H" title="Homme">
+                    <label for="genreH">Homme</label>
+                    <input type="radio" name="Genre" id="genreF" value="F" title="Femme">
+                    <label for="genreF">Femme</label>
+                </td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>Campus</b></font></td>
+                <td>
+                    <select name="Campus" id="campus" title="Sélectionnez votre campus">
+                        <option value="">Sélectionnez un campus</option>
+                        <option value="Kaolack">Kaolack</option>
+                        <option value="Khelcom">Khelcom</option>
+                        <option value="Fatick">Fatick</option>
+                    </select><font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="143"><font color="blue"><b>Spécialité</b></font></td>
+                <td>
+                    <select name="Specialite" id='specialite' title="Sélectionnez votre spécialité">
+                        <option value="">Sélectionnez une spécialité</option>
+                        <option value="Mathématique">Mathématique</option>
+                        <option value="Informatique">Informatique</option>
+                        <option value="Agrotic">Agrotic</option>
+                    </select><font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="Valider" value="OK"></td>
+                <td><input type="reset" name="an" value="Annuler"></td>
+            </tr>
+        </table>
+        <h4><font color="red">*</font> <font color="black">Zone de saisie obligatoire</font></h4>
+    </form>
+</body>
+</html>
